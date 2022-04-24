@@ -1,6 +1,5 @@
 package com.devshadat.leadscorpecommercedemo.repos;
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -8,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.devshadat.leadscorpecommercedemo.data.Product;
 import com.devshadat.leadscorpecommercedemo.request.ProductRequestAPI;
 import com.devshadat.leadscorpecommercedemo.util.RetrofitClient;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -129,5 +127,6 @@ public class ProductRepository {
 
         return womenClothingProduct;
     }
+
 
 }

@@ -1,7 +1,5 @@
 package com.devshadat.leadscorpecommercedemo.data;
 
-import android.media.Rating;
-
 public class Product {
 
     private int id;
@@ -40,4 +38,5 @@ public class Product {
     public Rating getRating() {
         return rating;
     }
+
 }

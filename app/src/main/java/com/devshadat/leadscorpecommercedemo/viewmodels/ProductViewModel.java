@@ -1,7 +1,5 @@
 package com.devshadat.leadscorpecommercedemo.viewmodels;
 
-import android.location.Location;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 

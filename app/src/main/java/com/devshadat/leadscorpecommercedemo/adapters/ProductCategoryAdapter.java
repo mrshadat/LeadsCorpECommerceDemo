@@ -10,39 +10,39 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.devshadat.leadscorpecommercedemo.R;
-import com.devshadat.leadscorpecommercedemo.data.Category;
 import com.devshadat.leadscorpecommercedemo.data.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.internal.Util;
-
 public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategoryAdapter.ProductCategoryViewHolder> {
-    private List<Category> results = new ArrayList<>();
-    private List<Category> categories = new ArrayList<>();
+    private List<Product> results = new ArrayList<>();
 
-    @NonNull
     @Override
     public ProductCategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.category_item, parent, false);
+                .inflate(R.layout.product_list_item, parent, false);
 
         return new ProductCategoryViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductCategoryViewHolder holder, int position) {
-        Category volume = results.get(position);
+        Product volume = results.get(position);
 
-        holder.titleTextView.setText(volume.getQuantity());
+        String price = "BDT " + String.valueOf(volume.getPrice());
 
-      /*  if (volume.getImage() != null) {
+        holder.productTitle.setText(volume.getTitle());
+        holder.productTitle.setText(volume.getTitle());
+        holder.productPrice.setText(price);
+
+
+        if (volume.getImage() != null) {
             String imageUrl = volume.getImage();
 
-            Picasso.get().load(imageUrl).into(holder.smallThumbnailImageView);
-        }*/
+            Picasso.get().load(imageUrl).into(holder.productImage);
+        }
     }
 
     @Override
@@ -50,23 +50,22 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         return results.size();
     }
 
-    public void setResults(List<Category> products) {
+    public void setResults(List<Product> products) {
         this.results = products;
-
         notifyDataSetChanged();
     }
 
     class ProductCategoryViewHolder extends RecyclerView.ViewHolder {
-        private TextView titleTextView;
-        private TextView productCountTextView;
-        private TextView authorsTextView;
-        private TextView publishedDateTextView;
-        private ImageView smallThumbnailImageView;
+        private TextView productTitle;
+        private TextView productPrice;
+        private ImageView productImage;
 
         public ProductCategoryViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            titleTextView = itemView.findViewById(R.id.text_product_category);
+            productTitle = itemView.findViewById(R.id.product_item_title);
+            productPrice = itemView.findViewById(R.id.product_item_price);
+            productImage = itemView.findViewById(R.id.product_item_img);
 
         }
     }

@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.devshadat.leadscorpecommercedemo.adapters.ProductCategoryAdapter;
@@ -100,6 +102,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 binding.textElectronicsCount.setText("item: " + s);
+            }
+        });
+
+
+        binding.cardElectronics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("type", "electronics");
+                startActivity(intent);
+            }
+        });
+
+        binding.cardJewelery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("type", "jewelery");
+                startActivity(intent);
+            }
+        });
+
+        binding.cardMensCloth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("type", "menCloth");
+                startActivity(intent);
+            }
+        });
+
+        binding.cardWomenCloth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("type", "womenCloth");
+                startActivity(intent);
             }
         });
 
