@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,7 +11,6 @@ import android.os.Bundle;
 
 import com.devshadat.leadscorpecommercedemo.adapters.ProductCategoryAdapter;
 import com.devshadat.leadscorpecommercedemo.data.Product;
-import com.devshadat.leadscorpecommercedemo.databinding.ActivityMainBinding;
 import com.devshadat.leadscorpecommercedemo.databinding.ActivityProductListBinding;
 import com.devshadat.leadscorpecommercedemo.viewmodels.ProductViewModel;
 
@@ -31,7 +29,6 @@ public class ProductListActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_list);
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
         adapter = new ProductCategoryAdapter();
-
 
         type = getIntent().getStringExtra("type");
 

@@ -1,5 +1,7 @@
 package com.devshadat.leadscorpecommercedemo.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.devshadat.leadscorpecommercedemo.ProductDetailsActivity;
 import com.devshadat.leadscorpecommercedemo.R;
 import com.devshadat.leadscorpecommercedemo.data.Product;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategoryAdapter.ProductCategoryViewHolder> {
+
     private List<Product> results = new ArrayList<>();
 
     @Override
@@ -29,6 +34,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
 
     @Override
     public void onBindViewHolder(@NonNull ProductCategoryViewHolder holder, int position) {
+
         Product volume = results.get(position);
 
         String price = "BDT " + String.valueOf(volume.getPrice());
@@ -43,6 +49,18 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
 
             Picasso.get().load(imageUrl).into(holder.productImage);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, ProductDetailsActivity.class);
+                Gson gson = new Gson();
+                String jsonObject = gson.toJson(volume);
+                intent.putExtra("PRODUCT", jsonObject);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -55,7 +73,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         notifyDataSetChanged();
     }
 
-    class ProductCategoryViewHolder extends RecyclerView.ViewHolder {
+    static class ProductCategoryViewHolder extends RecyclerView.ViewHolder {
         private TextView productTitle;
         private TextView productPrice;
         private ImageView productImage;

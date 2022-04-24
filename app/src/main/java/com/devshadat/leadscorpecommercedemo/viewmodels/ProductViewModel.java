@@ -1,5 +1,6 @@
 package com.devshadat.leadscorpecommercedemo.viewmodels;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -15,6 +16,9 @@ public class ProductViewModel extends ViewModel {
     public MutableLiveData<String> jeweleryQuantity = new MutableLiveData<>();
     public MutableLiveData<String> menClothQuantity = new MutableLiveData<>();
     public MutableLiveData<String> womenClothQuantity = new MutableLiveData<>();
+    public MutableLiveData<String> title = new MutableLiveData<>();
+
+    MutableLiveData<Product> mutableProduct = new MutableLiveData<>();
 
     public ProductViewModel() {
         repository = new ProductRepository();
@@ -38,6 +42,14 @@ public class ProductViewModel extends ViewModel {
     public MutableLiveData<List<Product>> getAllWomenClothingProducts() {
         return repository.getWomenClothingProduct();
 
+    }
+
+    public void setProduct(Product product) {
+        mutableProduct.setValue(product);
+    }
+
+    public LiveData<Product> getProduct() {
+        return mutableProduct;
     }
 
 }

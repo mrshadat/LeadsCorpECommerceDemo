@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeadsCorpECommerceDemo">
         <activity
+            android:name=".CartActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".ProductListActivity"
             android:exported="true" />
         <activity
