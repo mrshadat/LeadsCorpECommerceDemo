@@ -20,21 +20,25 @@ public class ProductRepository {
 
     private static final String TAG = ProductRepository.class.getSimpleName();
 
-    private MutableLiveData<List<Product>> nearbyLD = new MutableLiveData<>();
+    private MutableLiveData<List<Product>> electronicsProducts = new MutableLiveData<>();
+    private MutableLiveData<List<Product>> jeweleryProducts = new MutableLiveData<>();
+    private MutableLiveData<List<Product>> menClothingProduct = new MutableLiveData<>();
+    private MutableLiveData<List<Product>> womenClothingProduct = new MutableLiveData<>();
 
-    public MutableLiveData<List<Product>> getResponse() {
+    public MutableLiveData<List<Product>> getElectronics() {
 
         ProductRequestAPI serviceApi =
                 RetrofitClient.getClientForProduct()
                         .create(ProductRequestAPI.class);
 
+        String endUrl = "products/category/electronics";
 
-        serviceApi.getAllProducts().enqueue(new Callback<List<Product>>() {
+        serviceApi.getProductByCategory(endUrl).enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(@NonNull Call<List<Product>> call, @NonNull Response<List<Product>> response) {
                 if (response.isSuccessful()) {
 
-                    nearbyLD.postValue(response.body());
+                    electronicsProducts.postValue(response.body());
                 }
             }
 
@@ -44,9 +48,86 @@ public class ProductRepository {
             }
         });
 
+        return electronicsProducts;
+    }
+
+    public MutableLiveData<List<Product>> getJewelery() {
+
+        ProductRequestAPI serviceApi =
+                RetrofitClient.getClientForProduct()
+                        .create(ProductRequestAPI.class);
+
+        String endUrl = "products/category/jewelery";
+
+        serviceApi.getProductByCategory(endUrl).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Product>> call, @NonNull Response<List<Product>> response) {
+                if (response.isSuccessful()) {
+
+                    jeweleryProducts.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+
+        return jeweleryProducts;
+    }
+
+    public MutableLiveData<List<Product>> getMenClothingProduct() {
+
+        ProductRequestAPI serviceApi =
+                RetrofitClient.getClientForProduct()
+                        .create(ProductRequestAPI.class);
+
+        String endUrl = "products/category/men's clothing";
+
+        serviceApi.getProductByCategory(endUrl).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Product>> call, @NonNull Response<List<Product>> response) {
+                if (response.isSuccessful()) {
+
+                    menClothingProduct.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+
+        return menClothingProduct;
+    }
 
 
-        return nearbyLD;
+    public MutableLiveData<List<Product>> getWomenClothingProduct() {
+
+        ProductRequestAPI serviceApi =
+                RetrofitClient.getClientForProduct()
+                        .create(ProductRequestAPI.class);
+
+        String endUrl = "products/category/women's clothing";
+
+        serviceApi.getProductByCategory(endUrl).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Product>> call, @NonNull Response<List<Product>> response) {
+                if (response.isSuccessful()) {
+
+                    womenClothingProduct.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+
+        return womenClothingProduct;
     }
 
 }

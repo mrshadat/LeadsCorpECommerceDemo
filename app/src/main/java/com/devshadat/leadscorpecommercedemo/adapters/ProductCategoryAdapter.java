@@ -20,7 +20,7 @@ import java.util.List;
 import okhttp3.internal.Util;
 
 public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategoryAdapter.ProductCategoryViewHolder> {
-    private List<Product> results = new ArrayList<>();
+    private List<Category> results = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
     @NonNull
@@ -34,9 +34,9 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
 
     @Override
     public void onBindViewHolder(@NonNull ProductCategoryViewHolder holder, int position) {
-        Product volume = results.get(position);
+        Category volume = results.get(position);
 
-        holder.titleTextView.setText(volume.getCategory());
+        holder.titleTextView.setText(volume.getQuantity());
 
       /*  if (volume.getImage() != null) {
             String imageUrl = volume.getImage();
@@ -50,7 +50,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         return results.size();
     }
 
-    public void setResults(List<Product> products) {
+    public void setResults(List<Category> products) {
         this.results = products;
 
         notifyDataSetChanged();

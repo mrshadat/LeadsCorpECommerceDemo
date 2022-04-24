@@ -2,6 +2,7 @@ package com.devshadat.leadscorpecommercedemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private CategoryViewModel categoryViewModel;
     private ActivityMainBinding binding;
     private ProductCategoryAdapter adapter;
+    private List<Category> categoryList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +40,66 @@ public class MainActivity extends AppCompatActivity {
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
         adapter = new ProductCategoryAdapter();
 
-        RecyclerView recyclerView = binding.categoryRecycler;
+        /*RecyclerView recyclerView = binding.categoryRecycler;
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter)*/
+        ;
 
 
-        productViewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
+        productViewModel.getAllElectronicProducts().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
-                adapter.setResults(products);
+                productViewModel.electronicsQuantity.setValue(String.valueOf(products.size()));
+            }
+        });
+
+        productViewModel.getAllJeweleryProducts().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                productViewModel.jeweleryQuantity.setValue(String.valueOf(products.size()));
+            }
+        });
+
+        productViewModel.getAllMenClothingProducts().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                productViewModel.menClothQuantity.setValue(String.valueOf(products.size()));
+            }
+        });
+
+        productViewModel.getAllWomenClothingProducts().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                productViewModel.womenClothQuantity.setValue(String.valueOf(products.size()));
+            }
+        });
+
+
+        productViewModel.menClothQuantity.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.textMenClothCount.setText("item: " + s);
+            }
+        });
+
+        productViewModel.womenClothQuantity.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.textWomenClothCount.setText("item: " + s);
+            }
+        });
+
+        productViewModel.jeweleryQuantity.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.textJeweleryCount.setText("item: " + s);
+            }
+        });
+
+        productViewModel.electronicsQuantity.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.textElectronicsCount.setText("item: " + s);
             }
         });
 
