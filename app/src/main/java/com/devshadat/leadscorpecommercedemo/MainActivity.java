@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.devshadat.leadscorpecommercedemo.adapters.ProductCategoryAdapter;
 import com.devshadat.leadscorpecommercedemo.data.Category;
@@ -18,6 +19,7 @@ import com.devshadat.leadscorpecommercedemo.viewmodels.ProductViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,8 +35,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
+        // Objects.requireNonNull(getSupportActionBar()).setTitle("Category");
+        setSupportActionBar(binding.toolbar);
+        binding.toolbar.setLogo(getResources().getDrawable(R.drawable.ic_baseline_person_white_24));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-       // adapter = new ProductCategoryAdapter();
+        binding.toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        // adapter = new ProductCategoryAdapter();
 
         /*RecyclerView recyclerView = binding.categoryRecycler;
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));

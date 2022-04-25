@@ -15,6 +15,7 @@ import com.devshadat.leadscorpecommercedemo.databinding.ActivityProductListBindi
 import com.devshadat.leadscorpecommercedemo.viewmodels.ProductViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductListActivity extends AppCompatActivity {
 
