@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.devshadat.leadscorpecommercedemo.adapters.CartAdapter;
 import com.devshadat.leadscorpecommercedemo.data.CartTable;
@@ -53,7 +55,12 @@ public class CartActivity extends AppCompatActivity {
         });
 
 
-        //     adapter.setResults(quesList);
+        binding.placeOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CartActivity.this, "Demo Complete", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

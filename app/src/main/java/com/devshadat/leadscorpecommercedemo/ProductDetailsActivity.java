@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.devshadat.leadscorpecommercedemo.data.CartTable;
 import com.devshadat.leadscorpecommercedemo.data.Product;
@@ -55,6 +56,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                 CartTable table = new CartTable(name, price, description, category, image);
                 cartViewModel.insert(table);
+
+                Toast.makeText(ProductDetailsActivity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
 
